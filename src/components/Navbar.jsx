@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image } from "@imagekit/react";
+import { ImageKit } from "./Image";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -7,13 +7,7 @@ export const Navbar = () => {
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/*LOGO*/}
       <div className="flex items-center gap-4 text-2xl font-bold">
-        <Image
-          urlEndpoint={import.meta.env.VITE_IK_URL_ENDPOINT}
-          src="/logo.png"
-          className="w-8 h8"
-          style={{ borderRadius: 5 }}
-          alt=""
-        />
+        <ImageKit src={"/logo.png"} alt={'shumel logo'} w={32} h={32}/>
         <span>shumelog</span>
       </div>
       {/*MOBILE MENU*/}
@@ -28,7 +22,7 @@ export const Navbar = () => {
         {/* MOBILE LINK LIST */}
         <div
           className={`w-full h-screen flex flex-col items-center justify-center gap-8 font-medium text-lg absolute top-16 bg-color-[#e6e6ff] transition-all ease-in-out ${
-            open ? "right-0" : "right-[100%]"
+            open ? "left-0" : "left-[100%]"
           }`}
         >
           <a href="/">Home</a>
