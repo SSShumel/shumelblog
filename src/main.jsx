@@ -1,10 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
+
 import {
   BrowserRouter,
+  createBrowserRouter,
   Route,
+  RouterProvider,
   Routes,
 } from "react-router";
 import { Homepage } from "./routes/Homepage.jsx";
@@ -13,18 +17,51 @@ import { SinglePostPage } from "./routes/SinglePostPage.jsx";
 import { Write } from "./routes/Write.jsx";
 import { LoginPage } from "./routes/LoginPage.jsx";
 import { RegisterPage } from "./routes/RegisterPage.jsx";
+import { MainLayout } from "./layouts/MainLayout.jsx";
+import { ClerkProvider } from "@clerk/clerk-react";
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
+
+const router = createBrowserRouter([
+  {
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        Component: Homepage,
+      },
+      {
+        path: "/posts",
+        Component: PostListPage,
+      },
+      {
+        path: "/:slug",
+        Component: SinglePostPage,
+      },
+      {
+        path: "/write",
+        Component: Write,
+      },
+      {
+        path: "/login",
+        Component: LoginPage,
+      },
+      {
+        path: "/register",
+        Component: RegisterPage,
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" Component={Homepage } />
-        <Route path="/posts" Component={PostListPage} />
-        <Route path="/:slug" Component={SinglePostPage} />
-        <Route path="/write" Component={Write} />
-        <Route path="/login" Component={LoginPage} />
-        <Route path="/register" Component={RegisterPage} />
-      </Routes>
-    </BrowserRouter>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <RouterProvider router={router} />
+    </ClerkProvider>
   </StrictMode>
 );
