@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ImageKit as Image } from "../components/Image";
 import { PostMenuActions } from "../components/PostMenuActions";
+import { Search } from "../components/Search";
+import { Comments } from "../components/Comments";
 
 export const SinglePostPage = () => {
   return (
@@ -31,9 +33,41 @@ export const SinglePostPage = () => {
         </div>
       </div>
       {/* content */}
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row gap-12">
         {/* text  */}
         <div className="lg:text-lg flex flex-col gap-6 text-justify">
+          <p className="">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea odit
+            dolore quo, nulla, nihil at cupiditate voluptate doloribus molestiae
+            sunt, ratione necessitatibus exercitationem deserunt nesciunt natus
+            nam obcaecati! Impedit, dolore. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Quod sint libero, officiis deserunt
+            doloremque, at necessitatibus qui, laudantium similique sit sequi
+            quo perferendis cum itaque natus quia officia alias. Quia. Lorem
+            ipsum dolor sit, amet consectetur adipisicing elit. Nam pariatur, ab
+            perferendis provident exercitationem nihil accusamus. Architecto hic
+            expedita laborum dolor est vero officiis ad, facilis possimus ea
+            explicabo corporis.
+          </p>
+          <p className="">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea odit
+            dolore quo, nulla, nihil at cupiditate voluptate doloribus molestiae
+            sunt, ratione necessitatibus exercitationem deserunt nesciunt natus
+            nam obcaecati! Impedit, dolore.
+          </p>
+          <p className="">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea odit
+            dolore quo, nulla, nihil at cupiditate voluptate doloribus molestiae
+            sunt, ratione necessitatibus exercitationem deserunt nesciunt natus
+            nam obcaecati! Impedit, dolore. Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Quod sint libero, officiis deserunt
+            doloremque, at necessitatibus qui, laudantium similique sit sequi
+            quo perferendis cum itaque natus quia officia alias. Quia. Lorem
+            ipsum dolor sit, amet consectetur adipisicing elit. Nam pariatur, ab
+            perferendis provident exercitationem nihil accusamus. Architecto hic
+            expedita laborum dolor est vero officiis ad, facilis possimus ea
+            explicabo corporis.
+          </p>
           <p className="">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea odit
             dolore quo, nulla, nihil at cupiditate voluptate doloribus molestiae
@@ -69,28 +103,52 @@ export const SinglePostPage = () => {
         </div>
         {/* menu  */}
         <div className="px-4 h-max sticky top-8">
-          <h1 className="">Author</h1>
-          <div className="">
-            <Image
-              src="userImg.jpeg"
-              className="w-12 h-12 rounded-full object-cover"
-              w="48"
-              h="48"
-            />
-            <Link>John Doe</Link>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
+          <h1 className="mb-4 text-sm font-medium">Author</h1>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-8">
+              <Image
+                src="userImg.jpeg"
+                className="w-12 h-12 rounded-full object-cover"
+                w="48"
+                h="48"
+              />
+              <Link className="text-blue-800">John Doe</Link>
+            </div>
+            <p className="text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur</p>
             <div className="flex gap-2">
-                <Link>
-                    <Image src='/facebook.svg'/>
-                </Link>
-                <Link>
-                    <Image src='/instagram.svg'/>
-                </Link>
+              <Link>
+                <Image src="/facebook.svg" />
+              </Link>
+              <Link>
+                <Image src="/instagram.svg" />
+              </Link>
             </div>
           </div>
-          <PostMenuActions/>
+          <PostMenuActions />
+          <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
+          <div className="flex flex-col gap-2 text-sm">
+            <Link className="underline">All</Link>
+            <Link to="/" className="underline">
+              Web Design
+            </Link>
+            <Link to="/" className="underline">
+              Development
+            </Link>
+            <Link to="/" className="underline">
+              Databases
+            </Link>
+            <Link to="/" className="underline">
+              Search Engines
+            </Link>
+            <Link to="/" className="underline">
+              Marketing
+            </Link>
+          </div>
+          <h1 className="mt-8 mb-4 text-sm font-medium">Search</h1>
+          <Search />
         </div>
       </div>
+      <Comments/>
     </div>
   );
 };
